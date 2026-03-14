@@ -4,7 +4,10 @@ from sqlalchemy.orm import Session
 from app.schemas.delivery_schema import DeliveryCreate
 from app.database.connection import get_db
 from app.models.delivery import Delivery
+
 router = APIRouter()
+
+
 @router.post("/deliveries")
 def create_delivery(delivery: DeliveryCreate, db: Session = Depends(get_db)):
 
@@ -24,6 +27,8 @@ def create_delivery(delivery: DeliveryCreate, db: Session = Depends(get_db)):
         "delivery_id": new_delivery.id
     }
 
+
 @router.get("/deliveries")
-def get_deliveries():
+def get_deliveries(db: Session = Depends(get_db)):
+    deliveries = db.query(Delivery).all()
     return deliveries
