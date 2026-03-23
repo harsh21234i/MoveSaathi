@@ -46,7 +46,14 @@ This improves:
 - Scalability
 - Maintainability
 ---
+##  Role-Based Access Control
 
+Implemented role-based restrictions:
+
+- Only customers can create deliveries
+- Unauthorized roles receive 403 error
+
+This ensures secure and realistic backend behavior.
 ## Example API Endpoints
 
 POST /auth/register

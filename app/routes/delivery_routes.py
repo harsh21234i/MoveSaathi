@@ -3,27 +3,21 @@ from sqlalchemy.orm import Session
 from app.utils.auth_dependency import get_current_user
 from app.schemas.delivery_schema import DeliveryCreate
 from app.database.connection import get_db
-from app.models.delivery import Delivery
+from app.services.delivery_service import create_delivery_service, get_all_deliveries_service
+from app.utils.role_checker import check_role
 
 router = APIRouter(tags=["Delivery"])
+
 
 @router.post("/deliveries")
 def create_delivery(
     delivery: DeliveryCreate,
     db: Session = Depends(get_db),
-    user_id: int = Depends(get_current_user)
+    current_user = Depends(get_current_user)
 ):
+    check_role(current_user, ["customer"])
 
-    new_delivery = Delivery(
-        pickup_location=delivery.pickup_location,
-        drop_location=delivery.drop_location,
-        package_type=delivery.package_type,
-        vehicle_type=delivery.vehicle_type
-    )
-
-    db.add(new_delivery)
-    db.commit()
-    db.refresh(new_delivery)
+    new_delivery = create_delivery_service(db, delivery, current_user.id)
 
     return {
         "message": "Delivery created successfully",
@@ -33,5 +27,4 @@ def create_delivery(
 
 @router.get("/deliveries")
 def get_deliveries(db: Session = Depends(get_db)):
-    deliveries = db.query(Delivery).all()
-    return deliveries
+    return get_all_deliveries_service(db)
