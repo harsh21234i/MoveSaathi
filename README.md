@@ -35,6 +35,16 @@ The backend is built using FastAPI and follows a modular architecture suitable f
 
 Customer → API → Delivery Request → Driver Assignment → Delivery Tracking → Payment
 
+##  Architecture Update
+
+We introduced a Service Layer:
+
+routes → services → database
+
+This improves:
+- Code readability
+- Scalability
+- Maintainability
 ---
 
 ## Example API Endpoints
