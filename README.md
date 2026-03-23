@@ -66,7 +66,17 @@ POST /drivers/accept
 
 ---
 
-## Project Status
+##  Driver System (Phase 1)
 
-Currently in development.
-Building step-by-step to demonstrate backend architecture and system design.
+- Driver registration implemented
+- Added vehicle type and availability
+- Role-based driver creation
+
+
+##  Driver Availability System
+
+- Drivers can go online/offline
+- Only drivers can update status
+- Availability stored in database
+
+This enables real-time driver participation in delivery system.

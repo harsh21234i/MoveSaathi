@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Boolean
 from app.models.delivery import Base
 
 class User(Base):
@@ -9,3 +9,5 @@ class User(Base):
     email = Column(String, unique=True)
     password = Column(String)
     role = Column(String)
+    vehicle_type = Column(String, nullable=True)
+    is_available = Column(Boolean, default=False)

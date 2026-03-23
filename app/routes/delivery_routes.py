@@ -5,7 +5,7 @@ from app.schemas.delivery_schema import DeliveryCreate
 from app.database.connection import get_db
 from app.services.delivery_service import create_delivery_service, get_all_deliveries_service
 from app.utils.role_checker import check_role
-
+from app.services.driver_service import update_driver_status_service
 router = APIRouter(tags=["Delivery"])
 
 
@@ -28,3 +28,12 @@ def create_delivery(
 @router.get("/deliveries")
 def get_deliveries(db: Session = Depends(get_db)):
     return get_all_deliveries_service(db)
+
+
+@router.put("/driver/status")
+def update_status(
+    is_available: bool,
+    db: Session = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
+    return update_driver_status_service(db, current_user, is_available)
