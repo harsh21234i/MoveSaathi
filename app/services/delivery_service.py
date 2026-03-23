@@ -21,3 +21,34 @@ def create_delivery_service(db: Session, delivery: DeliveryCreate, user_id: int)
 
 def get_all_deliveries_service(db: Session):
     return db.query(Delivery).all()
+
+def accept_delivery_service(db, delivery_id: int, user):
+
+    # check role
+    if user.role != "driver":
+        raise HTTPException(status_code=403, detail="Only drivers can accept deliveries")
+
+    # check availability
+    if not user.is_available:
+        raise HTTPException(status_code=400, detail="Driver is offline")
+
+    delivery = db.query(Delivery).filter(Delivery.id == delivery_id).first()
+
+    if not delivery:
+        raise HTTPException(status_code=404, detail="Delivery not found")
+
+    if delivery.status != "pending":
+        raise HTTPException(status_code=400, detail="Delivery already accepted")
+
+    # assign driver
+    delivery.driver_id = user.id
+    delivery.status = "accepted"
+
+    db.commit()
+    db.refresh(delivery)
+
+    return {
+        "message": "Delivery accepted successfully",
+        "delivery_id": delivery.id,
+        "driver_id": user.id
+    }

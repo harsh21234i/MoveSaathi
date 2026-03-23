@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from app.utils.auth_dependency import get_current_user
 from app.schemas.delivery_schema import DeliveryCreate
 from app.database.connection import get_db
-from app.services.delivery_service import create_delivery_service, get_all_deliveries_service
+from app.services.delivery_service import create_delivery_service, get_all_deliveries_service, accept_delivery_service
 from app.utils.role_checker import check_role
 from app.services.driver_service import update_driver_status_service
 router = APIRouter(tags=["Delivery"])
@@ -37,3 +37,11 @@ def update_status(
     current_user = Depends(get_current_user)
 ):
     return update_driver_status_service(db, current_user, is_available)
+
+@router.put("/deliveries/{delivery_id}/accept")
+def accept_delivery(
+    delivery_id: int,
+    db: Session = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
+    return accept_delivery_service(db, delivery_id, current_user)

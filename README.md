@@ -80,3 +80,10 @@ POST /drivers/accept
 - Availability stored in database
 
 This enables real-time driver participation in delivery system.
+
+##  Delivery Assignment System
+
+- Drivers can accept deliveries
+- Only available drivers can accept
+- Delivery status updated to "accepted"
+- Driver assigned via driver_id
