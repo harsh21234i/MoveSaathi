@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from app.models.delivery import Delivery
 from app.schemas.delivery_schema import DeliveryCreate
-
+from fastapi import HTTPException
 
 def create_delivery_service(db: Session, delivery: DeliveryCreate, user_id: int):
     new_delivery = Delivery(
@@ -52,3 +52,18 @@ def accept_delivery_service(db, delivery_id: int, user):
         "delivery_id": delivery.id,
         "driver_id": user.id
     }
+
+def get_available_deliveries_service(db):
+    deliveries = db.query(Delivery).filter(Delivery.status == "pending").all()
+
+    response = []
+    for d in deliveries:
+        response.append({
+            "id": d.id,
+            "pickup": d.pickup_location,
+            "drop": d.drop_location,
+            "vehicle": d.vehicle_type,
+            "status": d.status
+        })
+
+    return response

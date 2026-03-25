@@ -1,9 +1,6 @@
 from jose import jwt
 from datetime import datetime, timedelta
-
-SECRET_KEY = "movesaathi_secret_key"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60
+from app.utils.config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
 
 
 def create_access_token(data: dict):
