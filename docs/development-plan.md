@@ -1,80 +1,266 @@
-# MoveSaathi Development Plan
-
-MoveSaathi is a logistics delivery backend inspired by platforms like Porter and Uber Delivery.
-
-The goal of this project is to demonstrate real-world backend architecture using FastAPI.
+# 🚀 MoveSaathi Backend – Development Plan
 
 ---
 
-## Project Goals
+# 📌 Project Goal
 
-* Build a scalable logistics delivery backend
-* Implement RESTful APIs
-* Demonstrate backend system design
-* Practice production-ready backend architecture
+MoveSaathi is a logistics backend system (like Porter/Uber for goods) built using FastAPI.
 
----
-
-## Technology Stack
-
-Backend Framework
-FastAPI
-
-Database
-PostgreSQL
-
-ORM
-SQLAlchemy
-
-Cache / Queue
-Redis
-
-Background Jobs
-Celery
-
-Containerization
-Docker
+Goal:
+- Build production-ready backend
+- Learn real-world backend architecture
+- Implement scalable features
 
 ---
 
-## Core Modules
-
-Authentication
-User management and login system.
-
-Driver Service
-Driver availability and assignment.
-
-Delivery Service
-Create and manage delivery orders.
-
-Payment Service
-Process delivery payments.
-
-Tracking Service
-Real-time delivery tracking.
+# 🧠 What We Have Built So Far
 
 ---
 
-## Development Phases
+## 1️⃣ FastAPI Setup
 
-Phase 1
-Project setup and FastAPI basics.
+- Created FastAPI app
+- Implemented routing system
 
-Phase 2
-Authentication system.
+📌 Learned:
+- API basics
+- Route handling
 
-Phase 3
-Database integration.
+---
 
-Phase 4
-Delivery creation APIs.
+## 2️⃣ Database Integration (SQLAlchemy)
 
-Phase 5
-Driver matching logic.
+- Connected SQLite database
+- Created models (User, Delivery)
 
-Phase 6
-Payment system.
+📌 Learned:
+- ORM concept
+- Table mapping
 
-Phase 7
-Deployment with Docker.
+---
+
+## 3️⃣ Schemas (Pydantic)
+
+- Request validation
+- Data structure enforcement
+
+📌 Learned:
+- Input validation
+- Error handling (422)
+
+---
+
+## 4️⃣ Authentication System
+
+- User registration
+- Login system
+- JWT token generation
+
+📌 Learned:
+- OAuth2 flow
+- Stateless authentication
+
+---
+
+## 5️⃣ Password Security
+
+- Hashing using bcrypt
+
+📌 Learned:
+- Secure password storage
+
+---
+
+## 6️⃣ Protected Routes
+
+- Implemented get_current_user
+- Token-based authentication
+
+📌 Learned:
+- Dependency injection
+- Authorization
+
+---
+
+## 7️⃣ Service Layer (Clean Architecture)
+
+- Moved logic to services
+
+Structure:
+
+routes → services → database
+
+📌 Learned:
+- Separation of concerns
+- Scalable design
+
+---
+
+## 8️⃣ Role-Based Access Control
+
+Roles:
+- customer
+- driver
+- admin
+
+📌 Learned:
+- Authorization logic
+- Secure API access
+
+---
+
+## 9️⃣ Driver System
+
+- Driver registration
+- Vehicle type support
+- Availability system
+
+Fields:
+- vehicle_type
+- is_available
+
+📌 Learned:
+- Role-specific data handling
+
+---
+
+## 🔟 Driver Availability System
+
+- Online / Offline toggle
+
+📌 Learned:
+- Real-time driver behavior logic
+
+---
+
+## 1️⃣1️⃣ Delivery System
+
+- Customer creates delivery
+- Driver accepts delivery
+
+Fields added:
+- status (pending / accepted)
+- driver_id
+
+📌 Learned:
+- State management
+- Resource assignment
+
+---
+
+## 🌿 Git Workflow
+
+- Feature branch
+- Commit & push
+- Pull Request
+- Merge handling
+
+📌 Learned:
+- Real-world Git usage
+- Conflict handling
+
+---
+
+# 🏗️ Current Architecture
+routes → API endpoints
+services → business logic
+models → database tables
+schemas → validation
+database → connection/session
+utils → auth + helpers
+
+
+---
+
+# 🔥 Current Capabilities
+
+- Secure authentication system
+- Role-based access control
+- Driver management system
+- Delivery lifecycle (create → accept)
+- Clean architecture
+
+---
+
+# 🚀 What We Will Build Next
+
+---
+
+## 1️⃣ Available Deliveries API
+
+- Show only pending deliveries
+- Driver-specific view
+
+---
+
+## 2️⃣ Driver Matching System ⭐
+
+- Find nearest driver
+- Assign delivery automatically
+
+---
+
+## 3️⃣ Location System
+
+- Store latitude & longitude
+- Distance-based filtering
+
+---
+
+## 4️⃣ Advanced Features
+
+- Logging system
+- Error middleware
+- Background jobs
+
+---
+
+## 5️⃣ Deployment
+
+- Docker setup
+- PostgreSQL migration
+- Cloud deployment
+
+---
+
+## 6️⃣ Frontend (Later Phase)
+
+- Driver dashboard
+- Customer panel
+
+---
+
+# 🎯 Final Goal
+
+Build a backend similar to:
+
+👉 Porter / Uber for goods
+
+---
+
+# 💼 Your Current Level
+
+You are now at:
+
+🚀 Junior Backend Developer Level
+
+---
+
+# 🧠 Key Learnings
+
+- API development
+- Authentication (JWT)
+- Database design
+- Clean architecture
+- Git workflow
+- Real-world debugging
+
+---
+
+# 🔥 Motivation
+
+This is not a tutorial project anymore.
+
+This is a:
+
+💼 Production-level backend project
