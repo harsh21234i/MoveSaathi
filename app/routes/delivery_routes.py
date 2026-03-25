@@ -52,4 +52,4 @@ def get_available_deliveries(
     current_user = Depends(get_current_user)
 ):
     check_role(current_user, ["driver"])
-    return get_available_deliveries_service(db)
+    return get_available_deliveries_service(db, current_user)

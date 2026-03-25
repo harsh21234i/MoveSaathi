@@ -53,10 +53,19 @@ def accept_delivery_service(db, delivery_id: int, user):
         "driver_id": user.id
     }
 
-def get_available_deliveries_service(db):
-    deliveries = db.query(Delivery).filter(Delivery.status == "pending").all()
+def get_available_deliveries_service(db, user):
+
+    # check driver availability
+    if not user.is_available:
+        raise HTTPException(status_code=400, detail="Driver is offline")
+
+    deliveries = db.query(Delivery).filter(
+        Delivery.status == "pending",
+        Delivery.vehicle_type == user.vehicle_type
+    ).all()
 
     response = []
+
     for d in deliveries:
         response.append({
             "id": d.id,
