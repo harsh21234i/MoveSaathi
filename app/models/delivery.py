@@ -13,3 +13,4 @@ class Delivery(Base):
     vehicle_type = Column(String)
     status = Column(String, default="pending")
     driver_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
